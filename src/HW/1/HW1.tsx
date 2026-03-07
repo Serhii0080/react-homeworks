@@ -1,5 +1,15 @@
 import { UserList } from './UserList';
 
+export type User = {
+	id: number
+	name: string
+	age: number
+	address: {
+		street: string;
+		city: string;
+	};
+}
+
 export const HW1 = () => {
 
 	// 1️⃣ Раскомментируйте JSX (HW1.tsx, UserList.tsx) и вы увидите,
@@ -14,7 +24,7 @@ export const HW1 = () => {
 	// ❗ id на элементах не удаляем и не изменяем! Они нужны для автотестов.
 	// Если нужно подставить элемент массива в id, то подставляем по аналогии с другими элементами!
 
-	const users = [
+	const users: User[] = [
 		{ id: 1, name: 'John', age: 25, address: { street: '123 Main St', city: 'New York' } },
 		{ id: 2, name: 'Alice', age: 30, address: { street: '456 Elm St', city: 'San Francisco' } },
 		{ id: 3, name: 'Bob', age: 35, address: { street: '789 Oak St', city: 'Seattle' } },
@@ -34,7 +44,7 @@ export const HW1 = () => {
 
 	return (
 		<div id={'hw01'}>
-			<UserList users={'НАЗВАНИЕ МАССИВА, КОТОРЫЙ МЫ ПЕРЕДАЕМ'} />
+			<UserList users={users} />
 		</div>
 	);
 };
