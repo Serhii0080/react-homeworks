@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { UserList2 } from './UserList2';
 
+
 export type AddressType = {
   street: string;
   city: string;
@@ -10,11 +11,14 @@ export type UserType = {
   id: number;
   name: string;
   age: number;
-  address: any; // пропиши типизацию
+  address: {
+    street: string;
+    city: string;
+  }  // пропиши типизацию
 };
 
 export type UsersObjectType = {
-  myFriends: any; // пропиши типизацию
+  myFriends: UserType[]; // пропиши типизацию
 };
 
 export const HW2 = () => {
@@ -30,7 +34,7 @@ export const HW2 = () => {
   // ❗ Массив с данными не трогаем!
 
   const users = {
-    myFriends:[
+    myFriends: [
       { id: 1, name: 'John', age: 25, address: { street: '123 Main St', city: 'New York' } },
       { id: 2, name: 'Alice', age: 30, address: { street: '456 Elm St', city: 'San Francisco' } },
       { id: 3, name: 'Bob', age: 35, address: { street: '789 Oak St', city: 'Seattle' } },
@@ -44,10 +48,12 @@ export const HW2 = () => {
     ]
   }
 
-  let [currentUsers, setCurrentUsers] = useState<UsersObjectType>(users);
+  let [currentUsers, setCurrentUsers] = useState<UsersObjectType>(users)
 
   const filterUsers = () => {
-    const filteredUsers = 'НУЖНО ПРОФИЛЬТРОВАТЬ ДРУЗЕЙ. ОСТАВЛЯЕМ ТОЛЬКО ТЕХ, КОТОРЫЕ ЖИВУТ В ГОРОДЕ LOS ANGELES';
+    const filteredUsers = currentUsers.myFriends.filter((element) => {
+      return element.address.city === 'Los Angeles'
+    });
     setCurrentUsers({ myFriends: filteredUsers });
   };
 
